@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <link rel="stylesheet" href="index.css">
+    <link href='https://fonts.googleapis.com/css?family=Delius Unicase|DM Sans|Inter|Roboto' rel='stylesheet'>
+</head>
+<body>
+    <div class="main">
+          <p id="text">calc</p>
+          <input type="text" class="display" placeholder="0">
+          <div class="buttons">
+            <div class="container">
+            <button class="button" >7</button>
+            <button class="button" >8</button>
+            <button class="button" >9</button>
+            <button class="button"  id="d1" >DEL</button>
+            <button class="button" >4</button>
+            <button class="button" >5</button>
+            <button class="button" >6</button>
+            <button class="button" >+</button>
+            <button class="button" >1</button>
+            <button class="button" >2</button>
+            <button class="button" >3</button>
+            <button class="button" >-</button>
+            <button class="button" >.</button>
+            <button class="button">0</button>
+            <button class="button">/</button>
+            <button class="button" data-value="*">x</button>
+            <button class="button"  id="r1" >RESET</button>
+            <button class="button"  id="e1">=</button>
+            </div>
+            </div>
+    </div>
+    <script>
+        var string="";
+        var buttons=document.querySelectorAll('.button');
+        Array.from(buttons).forEach((button)=>{
+           button.addEventListener('click',(e)=>{
+            if(e.target.innerHTML=="="){
+                string=eval(string);
+                document.querySelector('.display').value=string;
+            }
+            else if(e.target.innerHTML=='RESET'){
+                string="";
+                document.querySelector('.display').value=string;
+            }
+            else if(e.target.innerHTML=='DEL'){
+                string=string.substring(0,string.length-1);
+                document.querySelector('.display').value=string;
+            }
+            else if(e.target.dataset.value){
+                string=string+ e.target.dataset.value; 
+                document.querySelector('.display').value=string;
+            }
+            else{
+                string=string+ e.target.innerHTML;
+                document.querySelector('.display').value=string;
+            }
+           })
+        })
+    </script>
+</body>
+</html>
